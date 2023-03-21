@@ -1,0 +1,5 @@
+- name: Ansible job failed, clear cache to trigger another provision run
+  ansible.builtin.systemd:
+    name: ansible-refresh.service
+    state: started
+  failed_when: false

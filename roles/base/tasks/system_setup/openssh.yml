@@ -1,0 +1,32 @@
+- name: System setup | OpenSSH | Open firewall
+  ansible.posix.firewalld:
+    service: ssh
+    permanent: true
+    state: enabled
+
+- name: System setup | OpenSSH | Enable daemon
+  tags: openssh,ssh,system,settings
+  service:
+    name: "{{ openssh_service }}"
+    enabled: yes
+    state: started
+
+- name: System setup | OpenSSH | Modify sshd_config disable password auth
+  tags: openssh,ssh,system,settings
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^(# *)?PasswordAuthentication.*yes'
+    line: PasswordAuthentication no
+    validate: sshd -t -f %s
+  notify: restart_sshd
+  when: p.stat.isdir is not defined
+
+- name: System setup | OpenSSH | Copy custom.conf to config.d
+  tags: openssh,ssh,system,settings
+  copy:
+    src: system_setup/sshd_config_custom
+    dest: /etc/ssh/sshd_config.d/100-custom.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart_sshd
