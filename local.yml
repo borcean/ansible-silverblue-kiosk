@@ -1,0 +1,23 @@
+# run roles
+- hosts: all
+  tags: base
+  become: true
+  roles:
+    - base
+
+- hosts: kiosk
+  tags: kiosk
+  become: true
+  roles:
+    - kiosk
+
+# end of run cleanup and reporting
+- hosts: all
+  become: true
+  tasks:
+    - name: Failed provision cleanup
+      include_tasks: playbooks/provision_failure.yml
+      tags: always
+      when:
+        - task_failed is defined
+        - task_failed | bool

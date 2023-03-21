@@ -1,0 +1,16 @@
+repo: https://github.com/borcean/ansible-silverblue-kiosk.git
+branch: main
+vault_file: /root/.ansible_vault_key
+
+timers:
+   refresh:
+      timer_boot: 1m
+      timer_active: 12h
+   pull:
+      timer_boot: 2m
+      timer_active: 10m
+
+automatic_updates: true
+sshd: true
+firewalld_zone: drop
+greenboot: false

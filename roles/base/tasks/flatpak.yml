@@ -1,0 +1,35 @@
+- name: Flatpak | Enable Flathub remote
+  community.general.flatpak_remote:
+    name: flathub
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+    state: present
+    enabled: true
+
+- name: Flatpak | Install dbus-x11 (ostree)
+  community.general.rpm_ostree_pkg:
+    name: dbus-x11
+    state: present
+
+- name: Flatpak | Check if able to update
+  ansible.builtin.shell: command -v dbus-launch
+  register: check_binary
+  changed_when: false
+  failed_when: false
+
+- name: Flatpak | Update installed Flatpaks
+  ansible.builtin.command: dbus-launch flatpak update -y
+  register: update_flatpaks
+  changed_when: '"Nothing to do" not in update_flatpaks.stdout'
+  when: check_binary.rc == 0
+
+- name: Flatpak | Removed unused Flatpaks
+  ansible.builtin.command: dbus-launch flatpak remove --unused -y
+  register: remove_unused_flatpaks
+  changed_when: '"Nothing unused to uninstall" not in remove_unused_flatpaks.stdout'
+  when: check_binary.rc == 0
+
+- name: Flatpak | Install FireFox
+  community.general.flatpak:
+    name: org.mozilla.firefox
+    state: present
+    remote: flathub

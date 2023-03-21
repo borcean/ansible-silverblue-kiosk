@@ -1,0 +1,66 @@
+- name: Kiosk | create user
+  ansible.builtin.user:
+    name: kiosk
+    state: present
+    comment: "Kiosk"
+    password: "{{ kiosk_passwd }}"
+    shell: /bin/bash
+
+- name: Kiosk | Install kiosk package
+  community.general.rpm_ostree_pkg:
+    name: gnome-kiosk-script-session
+    state: present
+
+- name: Kiosk | Create directories
+  ansible.builtin.file:
+    path: '/home/kiosk/{{ item.dir }}'
+    state: directory
+    owner: kiosk
+    group: kiosk
+    mode: '{{ item.mode }}'
+  with_items:
+    - { dir: '.local', mode: '0700' }
+    - { dir: '.local/bin', mode: '0755' }
+
+- name: Kiosk | Install session script
+  ansible.builtin.template:
+    src: gnome-kiosk-script-session.j2
+    dest: /home/kiosk/.local/bin/gnome-kiosk-script
+    owner: kiosk
+    group: kiosk
+    mode: '0755'
+  notify: restart_firefox
+
+- name: Kiosk | GDM | Set login session
+  community.general.ini_file:
+    path: /var/lib/AccountsService/users/kiosk
+    section: User
+    option: Session
+    value: gnome-kiosk-script-wayland
+
+- name: Kiosk | GDM | Enable automatic login
+  community.general.ini_file:
+    path: /etc/gdm/custom.conf
+    section: daemon
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+  with_items:
+    - { option: 'AutomaticLoginEnable', value: 'true' }
+    - { option: 'AutomaticLogin', value: 'kiosk' }
+
+- name: Kiosk | Install kill Firefox on schedule units
+  ansible.builtin.copy:
+    src: firefox_kill_{{ item }}
+    dest: /etc/systemd/system/firefox-kill.{{ item }}
+    owner: root
+    group: root
+    mode: 0640
+  notify: systemd_daemon_reload
+  with_items: 
+    - service
+    - timer
+
+- name: Kiosk | Enable kill Firefox on schedule timer
+  ansible.builtin.systemd:
+    name: firefox-kill.timer
+    enabled: true

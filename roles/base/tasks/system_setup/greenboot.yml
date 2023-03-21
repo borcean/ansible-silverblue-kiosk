@@ -1,0 +1,40 @@
+- name: System setup | Greenboot | Install packages
+  community.general.rpm_ostree_pkg:
+    name:
+      - greenboot
+      - greenboot-default-health-checks
+    state: present
+  when: greenboot | bool 
+
+- name: System setup | Greenboot | Uninstall packages
+  community.general.rpm_ostree_pkg:
+    name:
+      - greenboot
+      - greenboot-default-health-checks
+    state: absent
+  when: not greenboot | bool 
+
+- name: System setup | Greenboot | Check install state
+  ansible.builtin.shell: systemctl status greenboot-healthcheck
+  register: check_binary
+  changed_when: false
+  failed_when: false
+  when: greenboot | bool
+
+- name: System setup | Greenboot | Enable services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: true
+  with_items:
+    - greenboot-task-runner
+    - greenboot-healthcheck 
+    - greenboot-status 
+    - greenboot-loading-message 
+    - greenboot-grub2-set-counter 
+    - greenboot-grub2-set-success 
+    - greenboot-rpm-ostree-grub2-check-fallback 
+    - redboot-auto-reboot 
+    - redboot-task-runner
+  when: 
+    - greenboot | bool
+    - check_binary.rc == 0 or check_binary.rc == 3

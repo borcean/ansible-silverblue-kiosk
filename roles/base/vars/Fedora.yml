@@ -1,0 +1,4 @@
+ansible_package: ansible-core
+automatic_updates_timer: rpm-ostreed-automatic.timer
+openssh_service: sshd
+python_psutil_package: python3-psutil

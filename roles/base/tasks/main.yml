@@ -1,0 +1,32 @@
+- name: Load distro-specific variables
+  tags: always
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+
+- block:
+  # set up the ansible environment
+  - import_tasks: ansible_setup.yml
+
+  # configure user
+  - import_tasks: users/tms_admin.yml
+
+  # perform remaining tasks:
+  - import_tasks: system_setup/firewall.yml
+    when: firewalld_zone is defined
+  - import_tasks: system_setup/automatic_updates.yml
+    when:  automatic_updates | bool
+  - import_tasks: system_setup/greenboot.yml
+    when:  
+      - greenboot is defined
+      - greenboot | bool
+  - import_tasks: system_setup/openssh.yml
+    when: sshd | bool
+  - import_tasks: system_setup/scheduled_reboot.yml
+    when: reboot_schedule is defined
+  - import_tasks: flatpak.yml
+
+  rescue:
+  - name: Set fact if task failed
+    set_fact: task_failed=true
