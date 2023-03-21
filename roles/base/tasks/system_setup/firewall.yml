@@ -1,0 +1,7 @@
+- name: Firewall | Check active zone
+  ansible.builtin.command: firewall-cmd --get-active-zone
+  register: active_firewalld_zone
+  changed_when: false
+
+- name: Firewall | Set default zone
+  ansible.builtin.command: firewall-cmd '--set-default-zone={{ firewalld_zone }}'

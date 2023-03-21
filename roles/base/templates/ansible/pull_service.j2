@@ -1,0 +1,6 @@
+[Unit]
+Description= Ansible pull service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/ansible-pull -o -U {{ repo }} -C {{ branch }}

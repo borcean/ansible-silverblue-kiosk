@@ -1,0 +1,23 @@
+- name: Users | tms_admin | Configure user
+  ansible.builtin.user:
+    name: tms_admin
+    state: present
+    comment: TMS Admin
+    password: "{{ kiosk_passwd }}"
+
+- name: Users | tms_admin | Create .ssh directory
+  ansible.builtin.file:
+    path: "{{ item.dir }}"
+    state: directory
+    owner: tms_admin
+    group: "{{ user_group_name | default('tms_admin') }}"
+    mode: 0700
+  with_items:
+    - { dir: '/home/tms_admin/.ssh' }
+
+- name: Users | tms_admin | Add public key to authorized_keys
+  ansible.posix.authorized_key:
+    user: tms_admin
+    key: "{{ item }}"
+  with_file:
+    - users/tms_admin/ssh/id_beaverton.pub

@@ -1,0 +1,4 @@
+---
+- name: restart_firefox
+  ansible.builtin.command: killall firefox
+  failed_when: false

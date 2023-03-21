@@ -1,0 +1,66 @@
+- name: ansible setup | ansible-refresh systemd service
+  tags: ansible,ansible-setup,ansible-pull,systemd
+  copy:
+    src: ansible/{{ item.src }}
+    dest: /etc/systemd/system/{{ item.dest }}
+    owner: root
+    group: root
+    mode: 0640
+  with_items:
+    - { src: 'ansible_refresh_service', dest: 'ansible-refresh.service' }
+
+- name: ansible setup | ansible-pull systemd service
+  tags: ansible,ansible-setup,ansible-pull,systemd
+  template:
+    src: ansible/pull_service.j2
+    dest: /etc/systemd/system/ansible-pull.service
+    owner: root
+    group: root
+    mode: 0640
+
+
+- name: ansible setup | ansible systemd timers
+  tags: ansible,ansible-setup,ansible-pull,systemd
+  template:
+    src: ansible/timer.j2
+    dest: "/etc/systemd/system/ansible-{{ item.key }}.timer"
+    owner: root
+    group: root
+    mode: 0640
+  with_dict: "{{ timers }}"
+
+- name: ansible setup |  enable ansible systemd timers
+  tags: ansible,ansible-setup,ansible-pull,systemd
+  systemd:
+    name: "ansible-{{ item.key }}.timer"
+    enabled: true
+    masked: false
+    daemon_reload: true
+  with_dict: "{{ timers }}"
+
+- name: ansible setup | copy ansible requirements.yml file
+  tags: ansible,ansible-setup
+  copy:
+    src: ansible/requirements
+    dest: /root/.ansible/requirements.yml
+    owner: root
+    group: root
+    mode: 0640
+  changed_when: False
+
+- name: Ansible setup | Check ansible install state
+  ansible.builtin.shell: command -v ansible
+  register: check_binary
+  changed_when: false
+  failed_when: false
+
+- name: Ansible setup | Install content from ansible galaxy
+  tags: ansible,ansible-setup
+  command:
+    cmd: ansible-galaxy "{{ item.type }}" install -r requirements.yml --"{{ item.flag }}"
+  loop:
+    - { type: 'collection', flag: 'upgrade' }
+    - { type: 'role', flag: 'force' }
+  when: 
+    - check_binary.rc == 0
+  changed_when: false

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ ! "$(pidof firefox)" ]
+then
+    /usr/bin/killall -u kiosk firefox
+    /usr/bin/sleep 10.0
+    /usr/bin/firefox -kiosk -private-window {{ kiosk_url }}
+fi
+
+sleep 1.0
+exec "$0" "$@"

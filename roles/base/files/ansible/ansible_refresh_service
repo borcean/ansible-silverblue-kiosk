@@ -1,0 +1,6 @@
+[Unit]
+Description= Ansible Refresh Service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/rm -rf /root/.ansible/pull /root/.ansible/tmp /root/.ansible/requirements.yml /root/.ansible/galaxy_token
