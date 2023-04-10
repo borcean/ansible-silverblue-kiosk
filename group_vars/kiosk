@@ -3,4 +3,4 @@ kiosk_url: '"https://docs.google.com/presentation/d/e/2PACX-1vQPi2TlZ0mAdJrNkcb8
 
 kiosk_passwd: $6$8wAbkoPDOe7mehSs$/JRsoRUcQz9bViKOvSoZk0TAoWn9QMkAJ0rIAbQ1OdPEtUwaW4RMFWaRn/2HOPXlp0jsXDUjG6kTRtjrICMzv0
 
-reboot_schedule: '*:00'
+reboot_schedule: '*-*-* 8:00:00'
