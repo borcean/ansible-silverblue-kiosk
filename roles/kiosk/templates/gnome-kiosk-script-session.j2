@@ -1,10 +1,10 @@
 #!/bin/sh
 
-if [ ! "$(pidof firefox)" ]
+if [ ! "$(pidof firefox-bin)" ]
 then
-    /usr/bin/killall -u kiosk firefox
-    /usr/bin/sleep 10.0
-    /usr/bin/firefox -kiosk -private-window {{ kiosk_url }}
+    /usr/bin/killall -u kiosk firefox-bin
+    /usr/bin/sleep 1
+    /usr/bin/flatpak run org.mozilla.firefox -kiosk -private-window {{ kiosk_url }}
 fi
 
 sleep 1.0

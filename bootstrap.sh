@@ -52,13 +52,19 @@ until rpm-ostree status | grep "State: idle"; do sleep 1; echo -n "." ; done;
 OS=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | sed 's/"//g')
 
 if [[ "$OS" == fedora ]]; then
-    rpm-ostree upgrade
-    rpm-ostree install ansible-core python3-psutil
-    if ! command -v ansible &> /dev/null; then
-        echo "Transactional package install requires reboot. Restart provision after boot."
-        if confirm "Reboot system now?  y/n: "; then
-            systemctl reboot
+    if ! command -v dnf &> /dev/null; then
+        rpm-ostree upgrade
+        rpm-ostree install ansible-core python3-psutil
+        if ! command -v ansible &> /dev/null; then
+            echo "Transactional package install requires reboot. Restart provision after boot."
+            if confirm "Reboot system now?  y/n: "; then
+                systemctl reboot
+            fi
         fi
+    fi
+    else
+        dnf upgrade --refresh -y
+        dnf install ansible-core python3-psutil
     fi
 else
     if ! confirm "Unsupported distro detected, continue anyways?  y/n: "; then
