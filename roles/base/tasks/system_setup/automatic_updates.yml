@@ -1,12 +1,10 @@
-- name: System setup | Automatic updates | Configure rpm-ostreed
-  community.general.ini_file:
-    path: /etc/rpm-ostreed.conf
-    section: Daemon
-    option: AutomaticUpdatePolicy
-    value: stage
-  notify: rpm-ostree_reload
+- name: System setup | Automatic updates | Install auto updates package
+  ansible.builtin.package:
+    name: "{{ automatic_updates_package }}"
+    state: present
+  when: automatic_updates_package is defined
 
-- name: system setup | automatic updates | Enable a timer for automatic updates
+- name: System setup | Automatic updates | Enable a timer for automatic updates
   ansible.builtin.systemd:
     name: "{{ automatic_updates_timer }}"
     enabled: yes

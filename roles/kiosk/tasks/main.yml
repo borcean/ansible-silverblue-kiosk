@@ -7,7 +7,7 @@
     shell: /bin/bash
 
 - name: Kiosk | Install kiosk package
-  community.general.rpm_ostree_pkg:
+  ansible.builtin.package:
     name: gnome-kiosk-script-session
     state: present
 

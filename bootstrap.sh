@@ -2,7 +2,7 @@
 
 # Options
 REPO="https://github.com/borcean/ansible-silverblue-kiosk.git"
-BRANCH=main
+BRANCH=mutable
 VAULT_FILE=/root/.ansible_vault_key
 INVENTORY="https://raw.githubusercontent.com/borcean/ansible-silverblue-kiosk/"$BRANCH"/hosts"
 REQUIREMENTS="https://raw.githubusercontent.com/borcean/ansible-silverblue-kiosk/"$BRANCH"/requirements.yml"
@@ -44,28 +44,12 @@ fi
 # Check if hostname is in inventory
 check_hostname
 
-# Wait for rpm-ostree to be idle before installing updates
-echo "Waiting for rpm-ostree idle state"
-until rpm-ostree status | grep "State: idle"; do sleep 1; echo -n "." ; done;
-
 # Update OS and install Ansible on supported distros
 OS=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | sed 's/"//g')
 
 if [[ "$OS" == fedora ]]; then
-    if ! command -v dnf &> /dev/null; then
-        rpm-ostree upgrade
-        rpm-ostree install ansible-core python3-psutil
-        if ! command -v ansible &> /dev/null; then
-            echo "Transactional package install requires reboot. Restart provision after boot."
-            if confirm "Reboot system now?  y/n: "; then
-                systemctl reboot
-            fi
-        fi
-    fi
-    else
-        dnf upgrade --refresh -y
-        dnf install ansible-core python3-psutil
-    fi
+    dnf upgrade --refresh -y
+    dnf install ansible-core -y
 else
     if ! confirm "Unsupported distro detected, continue anyways?  y/n: "; then
         exit

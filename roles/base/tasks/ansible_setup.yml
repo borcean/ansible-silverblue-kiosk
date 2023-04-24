@@ -1,5 +1,5 @@
 - name: Ansible setup | Install packages
-  community.general.rpm_ostree_pkg:
+  ansible.builtin.package:
     name:
       - ansible-core
       - python3-psutil

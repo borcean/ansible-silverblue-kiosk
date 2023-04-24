@@ -4,9 +4,6 @@
     name: "{{ openssh_service }}"
     state: restarted
 
-- name: rpm-ostree_reload
-  ansible.builtin.command: rpm-ostree reload
-
 - name: systemd_daemon_reload
   ansible.builtin.systemd:
     daemon_reload: true

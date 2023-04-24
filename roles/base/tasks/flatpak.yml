@@ -5,8 +5,8 @@
     state: present
     enabled: true
 
-- name: Flatpak | Install dbus-x11 (ostree)
-  community.general.rpm_ostree_pkg:
+- name: Flatpak | Install dbus-x11
+  ansible.builtin.package:
     name: dbus-x11
     state: present
 

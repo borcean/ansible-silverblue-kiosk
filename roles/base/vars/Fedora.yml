@@ -1,4 +1,5 @@
 ansible_package: ansible-core
-automatic_updates_timer: rpm-ostreed-automatic.timer
+automatic_updates_package: dnf-automatic
+automatic_updates_timer: dnf-automatic-install.timer
 openssh_service: sshd
 python_psutil_package: python3-psutil
