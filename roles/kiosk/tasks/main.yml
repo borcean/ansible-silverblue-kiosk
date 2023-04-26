@@ -47,3 +47,20 @@
   with_items:
     - { option: 'AutomaticLoginEnable', value: 'true' }
     - { option: 'AutomaticLogin', value: 'kiosk' }
+
+- name: Kiosk | Install kill Firefox on schedule units
+  ansible.builtin.copy:
+    src: firefox_kill_{{ item }}
+    dest: /etc/systemd/system/firefox-kill.{{ item }}
+    owner: root
+    group: root
+    mode: 0640
+  notify: systemd_daemon_reload
+  with_items: 
+    - service
+    - timer
+
+- name: Kiosk | Enable kill Firefox on schedule timer
+  ansible.builtin.systemd:
+    name: firefox-kill.timer
+    enabled: true
