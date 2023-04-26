@@ -2,7 +2,7 @@
 Description=Scheduled reboot
 
 [Timer]
-OnCalendar=*-*-* 8:10:00
+OnCalendar=*-*-* *:00:00
 
 [Install]
 WantedBy=timers.target
