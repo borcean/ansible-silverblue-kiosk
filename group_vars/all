@@ -13,4 +13,3 @@ timers:
 automatic_updates: true
 sshd: true
 firewalld_zone: drop
-greenboot: false
