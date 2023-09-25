@@ -9,6 +9,7 @@
   community.general.rpm_ostree_pkg:
     name: dbus-x11
     state: present
+  when: "'dbus-x11' not in ansible_facts.packages"
 
 - name: Flatpak | Check if able to update
   ansible.builtin.shell: command -v dbus-launch

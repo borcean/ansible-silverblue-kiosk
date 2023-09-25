@@ -1,4 +1,13 @@
-# run roles
+# Tasks to complete before running roles
+- hosts: all
+  tags: always
+  become: true
+  pre_tasks:
+    - name: Pre-run | Get package facts
+      tags: always
+      ansible.builtin.package_facts:
+
+# Run roles
 - hosts: all
   tags: base
   become: true
@@ -11,7 +20,7 @@
   roles:
     - kiosk
 
-# end of run cleanup and reporting
+# End of run cleanup and reporting
 - hosts: all
   become: true
   tasks:

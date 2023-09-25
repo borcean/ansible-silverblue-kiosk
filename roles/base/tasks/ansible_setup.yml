@@ -2,6 +2,8 @@
   community.general.rpm_ostree_pkg:
     name: ansible
     state: present
+  when: "'ansible' not in ansible_facts.packages"
+
 
 - name: Ansible setup | Ansible-refresh systemd service
   ansible.builtin.copy:
