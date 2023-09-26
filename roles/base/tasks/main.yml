@@ -12,6 +12,12 @@
   # configure user
   - import_tasks: users/tms_admin.yml
 
+  # rebase os version
+  - import_tasks: rebase_os.yml
+    when:
+      - fedora_version_required is defined
+      - "ansible_distribution_version is version( fedora_version_required, '!=')"
+
   # perform remaining tasks:
   - import_tasks: system_setup/firewall.yml
     when: firewalld_zone is defined
