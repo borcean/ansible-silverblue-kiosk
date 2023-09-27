@@ -15,6 +15,7 @@
   # rebase os version
   - import_tasks: rebase_os.yml
     when:
+      - fedora_allow_rebase | bool
       - fedora_version_required is defined
       - "ansible_distribution_version is version( fedora_version_required, '!=')"
 
