@@ -32,3 +32,14 @@
     - deployment_booted.stdout | bool
     - deployment_pinned.stdout | bool
     - "ansible_distribution_version is version( fedora_version_required, '!=')"
+
+- name: Check if deployment pending reboot
+  ansible.builtin.shell: set -o pipefail && rpm-ostree status --json | jq .deployments[0].booted
+  register: deployment_booted
+  changed_when: false
+
+- name: Immediate reboot
+  ansible.builtin.command: "systemctl reboot -i"
+  when:
+    - rebase_reboot_immediate | bool
+    - not deployment_booted.stdout | bool

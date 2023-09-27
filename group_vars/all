@@ -13,3 +13,4 @@ timers:
 automatic_updates: true
 sshd: true
 firewalld_zone: drop
+rebase_reboot_immediate: false

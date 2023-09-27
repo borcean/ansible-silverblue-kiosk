@@ -1,1 +1,2 @@
 fedora_version_required: 39
+rebase_reboot_immediate: true
