@@ -48,20 +48,19 @@ check_hostname
 echo "Waiting for rpm-ostree idle state"
 until rpm-ostree status | grep "State: idle"; do sleep 1; echo -n "." ; done;
 
-# Update OS and install Ansible on supported distros
+# Install Ansible
 OS=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | sed 's/"//g')
 
 if [[ "$OS" == fedora ]]; then
-    rpm-ostree upgrade
     if ! command -v ansible &> /dev/null; then
-        rpm-ostree install ansible gnome-kiosk-script-session dbus-x11
-        echo "Transactional package install requires reboot. Restart provision after boot."
-        if confirm "Reboot system now?  y/n: "; then
-            systemctl reboot
-        fi
+        rpm-ostree install --apply-live ansible gnome-kiosk-script-session
+        # echo "Transactional package install requires reboot. Restart provision after boot."
+        # if confirm "Reboot system now?  y/n: "; then
+        #     systemctl reboot
+        # fi
     fi
 else
-    if ! confirm "Unsupported distro detected, continue anyways?  y/n: "; then
+    if ! confirm "Unsupported distro detected. Only Fedora Silverblue is supported."; then
         exit
     fi
 fi
