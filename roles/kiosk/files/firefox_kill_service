@@ -1,6 +1,6 @@
 [Unit]
-Description=Kill Firefox flatpak
+Description=Kill Firefox
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/killall firefox-bin
+ExecStart=-/usr/bin/killall firefox firefox-bin
