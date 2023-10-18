@@ -24,7 +24,7 @@
 
 - name: Kiosk | Install session script
   ansible.builtin.template:
-    src: gnome-kiosk-script-session.j2
+    src: "gnome-kiosk-script-session-{{ firefox_install }}.j2"
     dest: /home/kiosk/.local/bin/gnome-kiosk-script
     owner: kiosk
     group: kiosk
@@ -37,6 +37,7 @@
     section: User
     option: Session
     value: gnome-kiosk-script-wayland
+    mode: '0600'
 
 - name: Kiosk | GDM | Enable automatic login
   community.general.ini_file:
@@ -44,6 +45,7 @@
     section: daemon
     option: '{{ item.option }}'
     value: '{{ item.value }}'
+    mode: '0644'
   with_items:
     - { option: 'AutomaticLoginEnable', value: 'true' }
     - { option: 'AutomaticLogin', value: 'kiosk' }
@@ -54,9 +56,9 @@
     dest: /etc/systemd/system/firefox-kill.{{ item }}
     owner: root
     group: root
-    mode: 0640
+    mode: '0640'
   notify: systemd_daemon_reload
-  with_items: 
+  with_items:
     - service
     - timer
 
@@ -64,3 +66,21 @@
   ansible.builtin.systemd:
     name: firefox-kill.timer
     enabled: true
+
+- name: Kiosk | Firefox policies create directory
+  ansible.builtin.file:
+    path: /etc/firefox/policies
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  when: firefox_policies is defined
+
+- name: Kiosk | Set Firefox policies
+  ansible.builtin.copy:
+    src: "firefox_policies_{{ firefox_policies }}.json"
+    dest: /etc/firefox/policies/policies.json
+    owner: root
+    group: root
+    mode: '0644'
+  when: firefox_policies is defined

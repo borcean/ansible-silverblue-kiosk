@@ -1,6 +1,7 @@
 [base]
 
 [kiosk]
+library.tumwater
 test.tumwater
 display.tumwater
 a130-display.tumwater

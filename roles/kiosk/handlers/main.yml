@@ -1,6 +1,6 @@
 ---
 - name: restart_firefox
-  ansible.builtin.command: killall firefox-bin
+  ansible.builtin.command: killall firefox-bin firefox
   failed_when: false
 
 - name: systemd_daemon_reload

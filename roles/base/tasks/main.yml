@@ -29,6 +29,7 @@
   - import_tasks: system_setup/scheduled_reboot.yml
     when: reboot_schedule is defined
   - import_tasks: flatpak.yml
+    when: firefox_install == "flatpak"
 
   rescue:
   - name: Set fact if task failed
