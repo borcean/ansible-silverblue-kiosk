@@ -1,0 +1,22 @@
+- name: System setup | Install scheduled poweroff service
+  ansible.builtin.copy:
+    src: system_setup/scheduled_poweroff_service
+    dest: /etc/systemd/system/scheduled-poweroff.service
+    owner: root
+    group: root
+    mode: 0640
+  notify: systemd_daemon_reload
+
+- name: System setup | Install scheduled poweroff timer
+  ansible.builtin.template:
+    src: poweroff_timer.j2
+    dest: /etc/systemd/system/scheduled-poweroff.timer
+    owner: root
+    group: root
+    mode: 0640
+  notify: systemd_daemon_reload
+
+- name: System setup | Enable scheduled poweroff timer
+  ansible.builtin.systemd:
+    name: scheduled-poweroff.timer
+    enabled: true

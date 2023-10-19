@@ -28,6 +28,8 @@
     when: sshd | bool
   - import_tasks: system_setup/scheduled_reboot.yml
     when: reboot_schedule is defined
+  - import_tasks: system_setup/scheduled_poweroff.yml
+    when: poweroff_schedule is defined
   - import_tasks: flatpak.yml
     when: firefox_install == "flatpak"
 

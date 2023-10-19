@@ -1,0 +1,8 @@
+[Unit]
+Description=Scheduled poweroff
+
+[Timer]
+OnCalendar={{ poweroff_schedule }}
+
+[Install]
+WantedBy=timers.target
