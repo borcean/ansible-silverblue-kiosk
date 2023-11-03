@@ -14,5 +14,5 @@ automatic_updates: true
 sshd: true
 firewalld_zone: drop
 fedora_allow_rebase: true
-fedora_version_required: 38
+fedora_version_required: 39
 rebase_reboot_immediate: true
