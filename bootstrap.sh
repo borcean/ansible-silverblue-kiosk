@@ -53,7 +53,7 @@ OS=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | sed 's/"/
 
 if [[ "$OS" == fedora ]]; then
     if ! command -v ansible &> /dev/null; then
-        rpm-ostree install --apply-live ansible gnome-kiosk-script-session
+        rpm-ostree install --apply-live -y ansible gnome-kiosk-script-session
         # echo "Transactional package install requires reboot. Restart provision after boot."
         # if confirm "Reboot system now?  y/n: "; then
         #     systemctl reboot
