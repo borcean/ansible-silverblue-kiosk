@@ -7,7 +7,7 @@ timers:
       timer_boot: 1m
       timer_active: 12h
    pull:
-      timer_boot: 2m
+      timer_boot: 5m
       timer_active: 10m
 
 automatic_updates: true
