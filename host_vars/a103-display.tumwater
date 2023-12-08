@@ -1,0 +1,2 @@
+fedora_allow_rebase: false
+poweroff_schedule: '*-*-* 16:30:00'
