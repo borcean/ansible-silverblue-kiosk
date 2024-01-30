@@ -37,7 +37,19 @@
     section: User
     option: Session
     value: gnome-kiosk-script-wayland
-    mode: '0600'
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Kiosk | GDM | Hide kiosk user in GDM
+  community.general.ini_file:
+    path: /var/lib/AccountsService/users/kiosk
+    section: User
+    option: SystemAccount
+    value: 'true'
+    owner: root
+    group: root
+    mode: '0644'
 
 - name: Kiosk | GDM | Enable automatic login
   community.general.ini_file:
@@ -45,10 +57,23 @@
     section: daemon
     option: '{{ item.option }}'
     value: '{{ item.value }}'
+    owner: root
+    group: root
     mode: '0644'
   with_items:
     - { option: 'AutomaticLoginEnable', value: 'true' }
     - { option: 'AutomaticLogin', value: 'kiosk' }
+
+- name: Kiosk | logind | Disable Auto VT
+  community.general.ini_file:
+    path: /etc/systemd/logind.conf
+    section: Login
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+  with_items:
+    - { option: 'NAutoVTs', value: '0' }
+    - { option: 'ReserveTV', value: '0' }
+  when: disable_autovts | bool
 
 - name: Kiosk | Install kill Firefox on schedule units
   ansible.builtin.copy:

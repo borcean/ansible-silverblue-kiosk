@@ -6,3 +6,5 @@ kiosk_passwd: $y$j9T$DeQUUYyTH4U9hcqihd/pH.$nmO8FYRjo2C/PhIRE/chnZI8wvi5FHv8UxjY
 reboot_schedule: '*-*-* 8:00:00'
 
 firefox_install: flatpak
+
+disable_autovts: true
