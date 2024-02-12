@@ -31,38 +31,50 @@
     mode: '0755'
   notify: restart_firefox
 
-- name: Kiosk | GDM | Set login session
-  community.general.ini_file:
-    path: /var/lib/AccountsService/users/kiosk
-    section: User
-    option: Session
-    value: gnome-kiosk-script-wayland
-    owner: root
-    group: root
-    mode: '0644'
-
-- name: Kiosk | GDM | Hide kiosk user in GDM
-  community.general.ini_file:
-    path: /var/lib/AccountsService/users/kiosk
-    section: User
-    option: SystemAccount
-    value: 'true'
-    owner: root
-    group: root
-    mode: '0644'
-
-- name: Kiosk | GDM | Enable automatic login
-  community.general.ini_file:
-    path: /etc/gdm/custom.conf
-    section: daemon
-    option: '{{ item.option }}'
-    value: '{{ item.value }}'
+- name: Kiosk | Login configuration
+  ansible.builtin.copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
     owner: root
     group: root
     mode: '0644'
   with_items:
-    - { option: 'AutomaticLoginEnable', value: 'true' }
-    - { option: 'AutomaticLogin', value: 'kiosk' }
+    - { src: 'accountsservice_kiosk', dest: '/var/lib/AccountsService/users/kiosk' }
+    - { src: 'accountsservice_tmsadmin', dest: '/var/lib/AccountsService/users/tms_admin'}
+    - { src: 'gdm_custom_conf', dest: '/etc/gdm/custom.conf' }
+
+# - name: Kiosk | GDM | Set login session
+#   community.general.ini_file:
+#     path: /var/lib/AccountsService/users/kiosk
+#     section: User
+#     option: Session
+#     value: gnome-kiosk-script-wayland
+#     owner: root
+#     group: root
+#     mode: '0644'
+
+# - name: Kiosk | GDM | Hide kiosk user in GDM
+#   community.general.ini_file:
+#     path: /var/lib/AccountsService/users/kiosk
+#     section: User
+#     option: SystemAccount
+#     value: 'true'
+#     owner: root
+#     group: root
+#     mode: '0644'
+
+# - name: Kiosk | GDM | Enable automatic login
+#   community.general.ini_file:
+#     path: /etc/gdm/custom.conf
+#     section: daemon
+#     option: '{{ item.option }}'
+#     value: '{{ item.value }}'
+#     owner: root
+#     group: root
+#     mode: '0644'
+#   with_items:
+#     - { option: 'AutomaticLoginEnable', value: 'true' }
+#     - { option: 'AutomaticLogin', value: 'kiosk' }
 
 - name: Kiosk | logind | Disable Auto VT
   community.general.ini_file:
