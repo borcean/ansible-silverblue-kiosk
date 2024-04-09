@@ -15,6 +15,7 @@
         "DisableFirefoxAccounts": true,
         "DisableFirefoxStudies": true,
         "DisablePocket": true,
+        "DisableSetDesktopBackground": true,
         "DisableTelemetry": true,
         "DisplayMenuBar": "never",
         "DisableProfileRefresh": false,
