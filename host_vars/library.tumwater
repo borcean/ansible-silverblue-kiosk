@@ -3,4 +3,3 @@ kiosk_url: '"https://library4.cascadetech.org/common/welcome.jsp?site=403&contex
 firefox_install: system
 firefox_policies: library
 poweroff_schedule: '*-*-* 16:30:00'
-fedora_version_required: 40
