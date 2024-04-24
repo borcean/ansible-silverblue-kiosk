@@ -20,6 +20,7 @@
       - "ansible_distribution_version is version( fedora_version_required, '!=')"
 
   # perform remaining tasks:
+  - import_tasks: system_setup/networkmanager.yml
   - import_tasks: system_setup/firewall.yml
     when: firewalld_zone is defined
   - import_tasks: system_setup/automatic_updates.yml

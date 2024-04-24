@@ -1,0 +1,7 @@
+- name: System setup | NetworkManager | Overide StableSSIDMACAddress
+  ansible.builtin.file:
+    path: /etc/NetworkManager/conf.d/22-wifi-mac-addr.conf
+    state: touch
+    owner: root
+    group: root
+    mode: '0644'
