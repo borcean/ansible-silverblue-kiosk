@@ -4,7 +4,7 @@ if [ ! "$(pidof firefox)" ]
 then
     /usr/bin/killall -u kiosk firefox
     /usr/bin/rm -rf ~/.cache/mozilla ~/.mozilla
-    /usr/bin/firefox
+    /usr/bin/firefox -kiosk -private-window {{ kiosk_url }}
 fi
 
 sleep 1.0
