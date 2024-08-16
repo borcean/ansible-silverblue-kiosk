@@ -54,10 +54,9 @@ OS=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }' | sed 's/"/
 if [[ "$OS" == fedora ]]; then
     if ! command -v ansible &> /dev/null; then
         rpm-ostree install --apply-live -y ansible gnome-kiosk-script-session
-        # echo "Transactional package install requires reboot. Restart provision after boot."
-        # if confirm "Reboot system now?  y/n: "; then
-        #     systemctl reboot
-        # fi
+    fi
+    if ! rpm -qa | grep python3-rpm &> /dev/null; then
+        rpm-ostree install python3-rpm
     fi
 else
     if ! confirm "Unsupported distro detected. Only Fedora Silverblue is supported."; then
