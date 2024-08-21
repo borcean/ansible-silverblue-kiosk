@@ -3,7 +3,7 @@ Description=Scheduled reboot
 
 [Timer]
 OnBootSec=10min
-OnActiveSec=30min
+OnCalendar=hourly
 
 [Install]
 WantedBy=timers.target
