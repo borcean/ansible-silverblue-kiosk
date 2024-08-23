@@ -1,0 +1,5 @@
+kiosk_url: '"https://docs.google.com/forms/d/e/1FAIpQLSc23YqQLIYQ4jB57K7MrsLeqLpE3ksZtOZ3c60I2wnf47QzQQ/viewform"'
+
+firefox_install: system
+firefox_policies: wellness
+poweroff_schedule: '*-*-* 16:30:00'
