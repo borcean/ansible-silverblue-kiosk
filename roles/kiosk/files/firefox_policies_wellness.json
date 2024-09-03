@@ -34,7 +34,7 @@
             "Locked": false
         },
         "Homepage": {
-            "URL": "https://docs.google.com/forms/d/e/1FAIpQLSc23YqQLIYQ4jB57K7MrsLeqLpE3ksZtOZ3c60I2wnf47QzQQ/viewform",
+            "URL": "https://docs.google.com/forms/d/e/1FAIpQLSeqM6bZjA1_lC8XC55DbYx2S8s5yP-yqD2TUDcLfC1l0GKlYQ/viewform",
             "StartPage": "homepage",
             "Locked": true
         },
@@ -139,9 +139,9 @@
                 "<all_urls>"
             ],
             "Exceptions": [
-                "https://docs.google.com/forms/*/*/1FAIpQLSc23YqQLIYQ4jB57K7MrsLeqLpE3ksZtOZ3c60I2wnf47QzQQ/*",
-                "https://docs.google.com/forms/*/*/1FAIpQLSc23YqQLIYQ4jB57K7MrsLeqLpE3ksZtOZ3c60I2wnf47QzQQ/*",
-                "https://docs.google.com/forms/*/*/*/*/1FAIpQLSc23YqQLIYQ4jB57K7MrsLeqLpE3ksZtOZ3c60I2wnf47QzQQ/*"
+                "https://docs.google.com/forms/*/*/1FAIpQLSeqM6bZjA1_lC8XC55DbYx2S8s5yP-yqD2TUDcLfC1l0GKlYQ/*",
+                "https://docs.google.com/forms/*/*/1FAIpQLSeqM6bZjA1_lC8XC55DbYx2S8s5yP-yqD2TUDcLfC1l0GKlYQ/*",
+                "https://docs.google.com/forms/*/*/*/*/1FAIpQLSeqM6bZjA1_lC8XC55DbYx2S8s5yP-yqD2TUDcLfC1l0GKlYQ/*"
             ]
         }
     }
