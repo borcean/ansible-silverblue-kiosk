@@ -1,0 +1,4 @@
+kiosk_url: '"https://arcade.makecode.com/--kiosk?clean=1"'
+
+firefox_install: system
+firefox_policies: arcade-cabinet

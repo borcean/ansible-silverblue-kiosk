@@ -1,5 +1,5 @@
 [Unit]
-Description=Scheduled reboot
+Description=Scheduled Firefox reload
 
 [Timer]
 OnBootSec=10min

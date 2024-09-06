@@ -1,0 +1,146 @@
+{
+    "policies": {
+        "Cookies": {
+            "ExpireAtSessionEnd": true,
+            "Behavior": "reject-foreign",
+            "BehaviorPrivateBrowsing": "reject-foreign"
+        },
+        "BlockAboutAddons": true,
+        "BlockAboutConfig": true,
+        "BlockAboutProfiles": true,
+        "BlockAboutSupport": true,
+        "DisableAppUpdate": true,
+        "DisableBuiltinPDFViewer": true,
+        "DisableFeedbackCommands": true,
+        "DisableFirefoxAccounts": true,
+        "DisableFirefoxStudies": true,
+        "DisablePocket": true,
+        "DisableSetDesktopBackground": true,
+        "DisableTelemetry": true,
+        "DisplayMenuBar": "never",
+        "DisableProfileRefresh": false,
+        "DNSOverHTTPS": {
+            "Enabled": false
+        },
+        "DontCheckDefaultBrowser": true,
+        "FirefoxHome": {
+            "Search": false,
+            "TopSites": false,
+            "SponsoredTopSites": false,
+            "Highlights": false,
+            "Pocket": false,
+            "SponsoredPocket": false,
+            "Snippets": false,
+            "Locked": false
+        },
+        "Homepage": {
+            "URL": "https://arcade.makecode.com/--kiosk?clean=1",
+            "StartPage": "homepage",
+            "Locked": true
+        },
+        "ManualAppUpdateOnly": true,
+        "NetworkPrediction": false,
+        "NewTabPage": false,
+        "NoDefaultBookmarks": true,
+        "DisplayBookmarksToolbar": "never",
+        "OverrideFirstRunPage": "",
+        "OverridePostUpdatePage": "",
+        "PDFjs": {
+            "Enabled": false
+        },
+        "Permissions": {
+            "Camera": {
+                "BlockNewRequests": true,
+                "Locked": true
+            },
+            "Microphone": {
+                "BlockNewRequests": true,
+                "Locked": true
+            },
+            "Location": {
+                "BlockNewRequests": true,
+                "Locked": true
+            },
+            "Notifications": {
+                "BlockNewRequests": true,
+                "Locked": true
+            },
+            "VirtualReality": {
+                "BlockNewRequests": true,
+                "Locked": true
+            },
+            "Autoplay": {
+                "Default": "block-audio-video",
+                "Locked": true
+            }
+        },
+        "Preferences": {
+            "browser.safebrowsing.phishing.enabled": {
+                "Value": true,
+                "Status": "locked"
+            },
+            "browser.safebrowsing.malware.enabled": {
+                "Value": true,
+                "Status": "locked"
+            },
+            "browser.search.suggest.enabled": {
+                "Value": false,
+                "Status": "locked"
+            },
+            "browser.sessionstore.resume_from_crash": {
+                "Value": false,
+                "Status": "locked"
+            },
+            "browser.tabs.closeWindowWithLastTab": {
+                "Value": false,
+                "Status": "locked"
+            },
+            "dom.event.clipboardevents.enabled": {
+                "Value": false,
+                "Status": "locked"
+            },
+            "dom.event.contextmenu.enabled": {
+                "Value": false,
+                "Status": "locked"
+            },
+            "extensions.htmlaboutaddons.recommendations.enabled": {
+                "Value": false,
+                "Status": "locked"
+            },
+            "media.mediasource.enabled": {
+                "Value": false,
+                "Status": "locked"
+            }
+        },
+        "SanitizeOnShutdown": {
+            "Cache": true,
+            "Cookies": true,
+            "Downloads": true,
+            "FormData": true,
+            "History": true,
+            "Sessions": true,
+            "SiteSettings": true,
+            "OfflineApps": true,
+            "Locked": false
+        },
+        "SearchBar": "unified",
+        "SearchSuggestEnabled": false,
+        "StartDownloadsInTempDirectory": false,
+        "UserMessaging": {
+            "WhatsNew": false,
+            "ExtensionRecommendations": false,
+            "FeatureRecommendations": false,
+            "UrlbarInterventions": false,
+            "SkipOnboarding": false,
+            "MoreFromMozilla": false
+        },
+        "WebsiteFilter": {
+            "Block": [
+                "<all_urls>"
+            ],
+            "Exceptions": [
+                "https://arcade.makecode.com/*"
+            ]
+        }
+    }
+  }
