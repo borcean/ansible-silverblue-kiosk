@@ -87,7 +87,7 @@
     - { option: 'ReserveTV', value: '0' }
   when: disable_autovts | bool
 
-- name: Kiosk | Install kill Firefox on schedule units
+- name: Kiosk | Install kill Firefox service unit
   ansible.builtin.copy:
     src: firefox_kill_{{ item }}
     dest: /etc/systemd/system/firefox-kill.{{ item }}
@@ -97,6 +97,16 @@
   notify: systemd_daemon_reload
   with_items:
     - service
+
+- name: Kiosk | Install kill Firefox timer unit
+  ansible.builtin.template:
+    src: firefox_kill_{{ item }}.j2
+    dest: /etc/systemd/system/firefox-kill.{{ item }}
+    owner: root
+    group: root
+    mode: '0640'
+  notify: systemd_daemon_reload
+  with_items:
     - timer
 
 - name: Kiosk | Enable kill Firefox on schedule timer

@@ -3,7 +3,7 @@ Description=Scheduled Firefox reload
 
 [Timer]
 OnBootSec=10min
-OnCalendar=*:0/15
+OnCalendar={{ firefox_kill_schedule }}
 
 [Install]
 WantedBy=timers.target
