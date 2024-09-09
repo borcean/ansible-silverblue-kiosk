@@ -139,7 +139,7 @@
                 "<all_urls>"
             ],
             "Exceptions": [
-                "https://arcade.makecode.com/*"
+                "https://makecode.com/*"
             ]
         }
     }
