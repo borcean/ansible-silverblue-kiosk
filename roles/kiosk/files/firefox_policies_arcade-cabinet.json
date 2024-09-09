@@ -139,7 +139,7 @@
                 "<all_urls>"
             ],
             "Exceptions": [
-                "https://makecode.com/*"
+                "https://*.makecode.com/*"
             ]
         }
     }
