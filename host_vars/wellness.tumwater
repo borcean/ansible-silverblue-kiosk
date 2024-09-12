@@ -2,4 +2,4 @@ kiosk_url: '"https://docs.google.com/forms/d/e/1FAIpQLSeqM6bZjA1_lC8XC55DbYx2S8s
 
 firefox_install: system
 firefox_policies: wellness
-poweroff_schedule: '*-*-* 16:30:00'
+poweroff_schedule: '*-*-* 20:30:00'
