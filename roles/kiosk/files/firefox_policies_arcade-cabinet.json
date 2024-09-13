@@ -70,7 +70,7 @@
                 "Locked": true
             },
             "Autoplay": {
-                "Default": "block-audio-video",
+                "Default": "allow-audio-video",
                 "Locked": true
             }
         },
@@ -113,8 +113,8 @@
             }
         },
         "SanitizeOnShutdown": {
-            "Cache": true,
-            "Cookies": true,
+            "Cache": false,
+            "Cookies": false,
             "Downloads": true,
             "FormData": true,
             "History": true,
@@ -139,7 +139,10 @@
                 "<all_urls>"
             ],
             "Exceptions": [
-                "https://*.makecode.com/*"
+                "https://*.makecode.com/*",
+                "https://pxt.azureedge.net/*",
+                "https://trg-arcade.userpxt.io/*",
+                "https://dc.services.visualstudio.com/*"
             ]
         }
     }

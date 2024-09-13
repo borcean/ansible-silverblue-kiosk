@@ -1,5 +1,5 @@
 kiosk_url: '"https://arcade.makecode.com/--kiosk?clean=1"'
 
-firefox_install: system
+firefox_install: system-persistent
 firefox_policies: arcade-cabinet
 firefox_kill_schedule: 'monthly'

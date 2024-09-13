@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ ! "$(pidof firefox)" ]
+then
+    /usr/bin/killall -u kiosk firefox
+    /usr/bin/firefox -kiosk {{ kiosk_url }}
+fi
+
+exec "$0" "$@"
