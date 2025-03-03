@@ -1,7 +1,7 @@
 # Video must be in a playlist, video (and playlist) may be unlisted. Replaced the TV emoji with your Youtube video ID.
 # '"https://www.youtube.com/embed/📺?playlist=📺&controls=0&rel=0&autoplay=1&loop=1&mute=1"'
 
-kiosk_url: '"https://www.youtube.com/embed/2UEveN5Xv-k?playlist=2UEveN5Xv-k&controls=0&rel=0&autoplay=1&loop=1&mute=1"'
+kiosk_url: '"https://www.youtube.com/embed/e0J4GvncNx0?playlist=e0J4GvncNx0&controls=0&rel=0&autoplay=1&loop=1&mute=1"'
 
 
 firefox_kill_schedule: 'monthly'
