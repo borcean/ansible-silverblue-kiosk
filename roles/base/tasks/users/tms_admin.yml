@@ -3,6 +3,8 @@
     name: tms_admin
     state: present
     comment: TMS Admin
+    groups: wheel
+    append: true
     password: "{{ kiosk_passwd }}"
 
 - name: Users | tms_admin | Create .ssh directory
