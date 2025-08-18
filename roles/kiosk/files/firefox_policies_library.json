@@ -141,6 +141,7 @@
             "Exceptions": [
                 "https://library4.cascadetech.org/*",
                 "https://*.follettsoftware.com/*",
+                "https://*.follettdestiny.com/*",
                 "https://*.smore.com/*"
             ]
         }
