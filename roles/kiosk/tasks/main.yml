@@ -29,7 +29,7 @@
     owner: kiosk
     group: kiosk
     mode: '0755'
-  notify: restart_firefox
+  notify: restart_gdm
 
 - name: Kiosk | Login configuration
   ansible.builtin.copy:
@@ -42,6 +42,7 @@
     - { src: 'accountsservice_kiosk', dest: '/var/lib/AccountsService/users/kiosk' }
     - { src: 'accountsservice_tmsadmin', dest: '/var/lib/AccountsService/users/tms_admin'}
     - { src: 'gdm_custom_conf', dest: '/etc/gdm/custom.conf' }
+  notify: restart_gdm
 
 # - name: Kiosk | GDM | Set login session
 #   community.general.ini_file:

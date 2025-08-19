@@ -3,6 +3,11 @@
   ansible.builtin.command: killall firefox-bin firefox
   failed_when: false
 
+- name: restart_gdm
+  ansible.builtin.systemd:
+    name: gdm.service
+    state: restarted
+
 - name: systemd_daemon_reload
   ansible.builtin.systemd:
     daemon_reload: true
