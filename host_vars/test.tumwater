@@ -1,4 +1,2 @@
 poweroff_schedule: '*-*-* 16:30:00'
 fedora_allow_rebase: false
-
-kiosk_url: '"https://justabigclock.com/true/dark/en-GB/digital/0"'
