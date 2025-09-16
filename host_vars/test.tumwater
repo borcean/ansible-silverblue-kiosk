@@ -1,2 +1,3 @@
 poweroff_schedule: '*-*-* 16:30:00'
-fedora_allow_rebase: false
+
+fedora_version_required: 43
