@@ -1,0 +1,10 @@
+- name: Set hostname if mapping exists
+  ansible.builtin.hostname:
+    name: "{{ serial_to_hostname[ansible_facts['product_serial']] }}"
+  when: ansible_facts['product_serial'] in serial_to_hostname
+
+- name: Log if no mapping exists
+  ansible.builtin.debug:
+    msg: "No hostname mapping found for serial {{ ansible_facts['product_serial'] }} — skipping."
+  when: ansible_facts['product_serial'] not in serial_to_hostname
+  changed_when: false

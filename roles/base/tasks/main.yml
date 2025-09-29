@@ -9,6 +9,9 @@
   # set up the ansible environment
   - import_tasks: ansible_setup.yml
 
+  # set hostname
+  - ansible.builtin.import_tasks: system_setup/hostname.yml
+
   # configure user
   - import_tasks: users/tms_admin.yml
 
