@@ -3,5 +3,3 @@ kiosk_url: '"https://library4.cascadetech.org/portal/portal?app=Destiny%20Discov
 firefox_install: system
 firefox_policies: library
 poweroff_schedule: '*-*-* 17:00:00'
-
-fedora_version_required: 42
