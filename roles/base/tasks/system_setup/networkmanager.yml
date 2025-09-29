@@ -1,3 +1,8 @@
+- name: System setup | NetworkManager | Check if wifi MAC override exists
+  ansible.builtin.stat:
+    path: /etc/NetworkManager/conf.d/22-wifi-mac-addr.conf
+  register: wifi_mac_conf
+
 - name: System setup | NetworkManager | Overide StableSSIDMACAddress
   ansible.builtin.file:
     path: /etc/NetworkManager/conf.d/22-wifi-mac-addr.conf
@@ -5,3 +10,4 @@
     owner: root
     group: root
     mode: '0644'
+  when: not wifi_mac_conf.stat.exists
