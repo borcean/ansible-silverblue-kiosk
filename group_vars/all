@@ -16,3 +16,12 @@ firewalld_zone: drop
 fedora_allow_rebase: true
 fedora_version_required: 42
 rebase_reboot_immediate: true
+
+
+serial_to_hostname:
+  "C02MV1D7F8J5": "test.tumwater"
+  "C02MR063F8J2": "library.tumwater"
+  "C02MR06DF8J2": "library.tumwater"
+  "C02MQ189F8J2": "a103-display.tumwater"
+  "C02N13PPF8J4": "b103-display.tumwater"
+  "C02MR0WKF8J2": "wellness.tumwater"
