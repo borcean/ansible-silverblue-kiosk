@@ -25,13 +25,13 @@
   changed_when: false
 
 - name: Rebase Fedora version
-  ansible.builtin.command: "rpm-ostree rebase fedora:fedora/{{ fedora_version_required }}/x86_64/silverblue"
+  ansible.builtin.command: "rpm-ostree rebase fedora:fedora/{{ fedora_version_required }}/{{ ansible_architecture }}/silverblue"
   register: rebase_command
   changed_when: '"Changes queued for next boot" is in rebase_command.stdout'
   when:
     - deployment_booted.stdout | bool
     - deployment_pinned.stdout | bool
-    - "ansible_distribution_version is version( fedora_version_required, '!=')"
+    - "ansible_distribution_version is version( fedora_version_required, '<')"
 
 - name: Check if deployment pending reboot
   ansible.builtin.shell: set -o pipefail && rpm-ostree status --json | jq .deployments[0].booted
