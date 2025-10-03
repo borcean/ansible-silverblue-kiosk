@@ -4,10 +4,10 @@ vault_file: /root/.ansible_vault_key
 
 timers:
    refresh:
-      timer_boot: 1m
-      timer_active: 12h
+      timer_boot: 30s
+      timer_active: 8h
    pull:
-      timer_boot: 5m
+      timer_boot: 1m
       timer_active: 10m
 
 automatic_updates: true
