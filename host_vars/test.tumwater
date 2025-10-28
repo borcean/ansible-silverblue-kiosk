@@ -1,3 +1,2 @@
 poweroff_schedule: '*-*-* 16:30:00'
 
-fedora_version_required: 43
