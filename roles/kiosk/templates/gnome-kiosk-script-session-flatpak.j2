@@ -3,6 +3,7 @@
 if [ ! "$(pidof firefox-bin)" ]
 then
     /usr/bin/killall -u kiosk firefox-bin
+    /usr/bin/rm -rf ~/.cache/mozilla ~/.mozilla ~/.var/app/org.mozilla.firefox/.mozilla
     /usr/bin/flatpak run org.mozilla.firefox -private-window {{ kiosk_url }}
 fi
 
