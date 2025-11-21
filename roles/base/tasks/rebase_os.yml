@@ -11,13 +11,13 @@
   register: deployment_pinned
   changed_when: false
 
-- name: Pin current deployment
-  ansible.builtin.command: ostree admin pin 0
-  register: pin_deployment
-  changed_when: '"is now pinned" is in pin_deployment.stdout'
-  when:
-    - deployment_booted.stdout | bool
-    - not deployment_pinned.stdout | bool
+# - name: Pin current deployment
+#   ansible.builtin.command: ostree admin pin 0
+#   register: pin_deployment
+#   changed_when: '"is now pinned" is in pin_deployment.stdout'
+#   when:
+#     - deployment_booted.stdout | bool
+#     - not deployment_pinned.stdout | bool
 
 - name: Check if deployment pinned
   ansible.builtin.shell: set -o pipefail && rpm-ostree status --json | jq .deployments[0].pinned
@@ -29,8 +29,8 @@
   register: rebase_command
   changed_when: '"Changes queued for next boot" is in rebase_command.stdout'
   when:
-    - deployment_booted.stdout | bool
-    - deployment_pinned.stdout | bool
+    # - deployment_booted.stdout | bool
+    # - deployment_pinned.stdout | bool
     - "ansible_distribution_version is version( fedora_version_required, '<')"
 
 - name: Check if deployment pending reboot
