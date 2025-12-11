@@ -88,6 +88,19 @@
     - { option: 'ReserveTV', value: '0' }
   when: disable_autovts | bool
 
+- name: Kiosk | logind | Ignore suspend requests
+  community.general.ini_file:
+    path: /etc/systemd/logind.conf
+    section: Login
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+  with_items:
+    - { option: 'HandlePowerKey', value: 'poweroff' }
+    - { option: 'HandleSuspendKey', value: 'poweroff' }
+    - { option: 'HandleLidSwitch', value: 'ignore' }
+    - { option: 'HandleLidSwitchDocked', value: 'ignore' }
+    - { option: 'IdleAction', value: 'ignore' }
+
 - name: Kiosk | Install kill Firefox service unit
   ansible.builtin.copy:
     src: firefox_kill_{{ item }}
