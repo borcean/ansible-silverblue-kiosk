@@ -15,7 +15,7 @@ sshd: true
 firewalld_zone: drop
 fedora_allow_rebase: true
 fedora_version_required: 43
-rebase_reboot_immediate: true
+rebase_reboot_immediate: false
 
 
 serial_to_hostname:
