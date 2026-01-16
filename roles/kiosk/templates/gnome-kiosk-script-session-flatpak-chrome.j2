@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ ! "$(pidof chrome)" ]
+then
+    /usr/bin/killall -u kiosk chrome
+    /usr/bin/rm -rf ~/.var/app/com.google.Chrome/
+    /usr/bin/flatpak run com.google.Chrome --password-store=basic --incognito --no-first-run --kiosk {{ kiosk_url }}
+fi
+
+exec "$0" "$@"

@@ -29,8 +29,16 @@
   changed_when: '"Nothing unused to uninstall" not in remove_unused_flatpaks.stdout'
   when: check_binary.rc == 0
 
-- name: Flatpak | Install FireFox
+- name: Flatpak | Install FireFox Flatpak
   community.general.flatpak:
     name: org.mozilla.firefox
     state: present
     remote: flathub
+  when: firefox_install == "flatpak"
+
+- name: Flatpak | Install Chrome Flatpak
+  community.general.flatpak:
+    name: com.google.Chrome
+    state: present
+    remote: flathub
+  when: firefox_install == "flatpak-chrome"

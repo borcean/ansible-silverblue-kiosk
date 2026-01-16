@@ -1,2 +1,3 @@
 poweroff_schedule: '*-*-* 16:30:00'
 
+firefox_install: flatpak-chrome

@@ -35,7 +35,7 @@
   - import_tasks: system_setup/scheduled_poweroff.yml
     when: poweroff_schedule is defined
   - import_tasks: flatpak.yml
-    when: firefox_install == "flatpak"
+    when: firefox_install == "flatpak" or firefox_install == "flatpak-chrome"
 
   rescue:
   - name: Set fact if task failed
