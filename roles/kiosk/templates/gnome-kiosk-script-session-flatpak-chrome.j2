@@ -1,10 +1,13 @@
 #!/bin/sh
 
-if [ ! "$(pidof chrome)" ]
-then
-    /usr/bin/killall -u kiosk chrome
-    /usr/bin/rm -rf ~/.var/app/com.google.Chrome/
-    /usr/bin/flatpak run com.google.Chrome --password-store=basic --incognito --no-first-run --kiosk {{ kiosk_url }}
-fi
+while true; do
+    /usr/bin/flatpak run com.google.Chrome --password-store=basic --incognito --no-first-run --kiosk {{ kiosk_url }} &
+    CHROME_PID=$!
 
-exec "$0" "$@"
+    sleep {{ chrome_refresh_seconds }}
+
+    kill "$CHROME_PID" 2>/dev/null
+    wait "$CHROME_PID" 2>/dev/null
+
+    /usr/bin/rm -rf ~/.var/app/com.google.Chrome/
+done

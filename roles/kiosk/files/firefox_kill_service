@@ -3,4 +3,4 @@ Description=Kill Firefox / Chrome
 
 [Service]
 Type=oneshot
-ExecStart=-/usr/bin/killall firefox firefox-bin chrome
+ExecStart=-/usr/bin/killall firefox firefox-bin
