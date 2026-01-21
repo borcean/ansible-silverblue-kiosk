@@ -1,2 +1,4 @@
 # Video must be in a playlist, video (and playlist) may be unlisted. Replaced the TV emoji with your Youtube video ID.
 # '"https://www.youtube.com/embed/📺?playlist=📺&controls=0&rel=0&autoplay=1&loop=1&mute=1"'
+
+firefox_install: flatpak
