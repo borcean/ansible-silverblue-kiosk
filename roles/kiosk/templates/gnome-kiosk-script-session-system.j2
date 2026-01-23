@@ -1,5 +1,8 @@
 #!/bin/sh
 
+export MOZ_DISABLE_SAFE_MODE=1
+export MOZ_CRASHREPORTER_DISABLE=1
+
 if [ ! "$(pidof firefox)" ]
 then
     /usr/bin/killall -u kiosk firefox
