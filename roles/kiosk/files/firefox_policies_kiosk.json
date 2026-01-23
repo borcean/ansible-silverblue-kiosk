@@ -1,13 +1,7 @@
 {
     "policies": {
-        "Cookies": {
-            "ExpireAtSessionEnd": true,
-            "Behavior": "reject-foreign",
-            "BehaviorPrivateBrowsing": "reject-foreign"
-        },
         "BlockAboutAddons": true,
         "BlockAboutConfig": true,
-        "BlockAboutProfiles": true,
         "BlockAboutSupport": true,
         "DisableAppUpdate": true,
         "DisableBuiltinPDFViewer": true,
@@ -15,8 +9,8 @@
         "DisableFirefoxAccounts": true,
         "DisableFirefoxStudies": true,
         "DisableProfileRefresh": true,
-        "DisableCrashReporter": true,
         "DisablePocket": true,
+        "DisableSafeMode": true,
         "DisableSetDesktopBackground": true,
         "DisableTelemetry": true,
         "DisplayMenuBar": "never",
