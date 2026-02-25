@@ -60,7 +60,7 @@
                 "Locked": true
             },
             "Autoplay": {
-                "Default": "block-audio-video",
+                "Default": "allow-audio-video",
                 "Locked": true
             }
         },
