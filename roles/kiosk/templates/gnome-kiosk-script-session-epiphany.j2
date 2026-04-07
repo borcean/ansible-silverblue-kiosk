@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ ! "$(pidof epiphany)" ]
+then
+    /usr/bin/killall -u kiosk epiphany
+    /usr/sbin/epiphany -i {{ kiosk_url }}
+fi
+
+exec "$0" "$@"

@@ -1,6 +1,6 @@
 ---
 - name: restart_firefox
-  ansible.builtin.command: killall firefox-bin firefox
+  ansible.builtin.command: killall firefox-bin firefox epiphany
   failed_when: false
 
 - name: restart_gdm
