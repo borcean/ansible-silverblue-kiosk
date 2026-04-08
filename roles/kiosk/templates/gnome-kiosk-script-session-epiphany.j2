@@ -3,7 +3,8 @@
 if [ ! "$(pidof epiphany)" ]
 then
     /usr/bin/killall -u kiosk epiphany
-    /usr/sbin/epiphany -i {{ kiosk_url }}
+    /usr/sbin/rm -rf /home/kiosk/.local/share/epiphany
+    /usr/sbin/epiphany {{ kiosk_url }}
 fi
 
 exec "$0" "$@"

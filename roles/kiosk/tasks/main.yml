@@ -22,6 +22,14 @@
     - { dir: '.local', mode: '0700' }
     - { dir: '.local/bin', mode: '0755' }
 
+- name: Kiosk | Set Epiphany not to check for default browser
+  community.general.dconf:
+    key: "/org/gnome/epiphany/ask-for-default"
+    value: false
+  become: true
+  become_user: kiosk
+  when: firefox_install == 'epiphany'
+
 - name: Kiosk | Install session script
   ansible.builtin.template:
     src: "gnome-kiosk-script-session-{{ firefox_install }}.j2"
