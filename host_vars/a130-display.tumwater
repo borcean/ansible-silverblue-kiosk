@@ -2,5 +2,4 @@
 # '"https://www.youtube.com/embed/📺?playlist=📺&controls=0&rel=0&autoplay=1&loop=1&mute=1"'
 
 firefox_install: epiphany
-kiosk_url: '"https://docs.google.com/presentation/d/e/2PACX-1vSbqdR1yvVO_xUElAXVcp6HPd2JYtZuCYfxZnQsNdziTXevBl0mamudmSED3vQH5QryV92E5G2xj20p/pub?start=true&loop=true&delayms=15000"'
 
