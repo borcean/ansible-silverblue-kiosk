@@ -139,9 +139,9 @@
                 "<all_urls>"
             ],
             "Exceptions": [
-                "https://docs.google.com/forms/*/*/1FAIpQLSe406SawJPRckIWC8Uv64dnC550TCWpGemcoDnkaGx4mhVU3Q/*",
-                "https://docs.google.com/forms/*/*/1FAIpQLSe406SawJPRckIWC8Uv64dnC550TCWpGemcoDnkaGx4mhVU3Q/*",
-                "https://docs.google.com/forms/*/*/*/*/1FAIpQLSe406SawJPRckIWC8Uv64dnC550TCWpGemcoDnkaGx4mhVU3Q/*"
+                "https://docs.google.com/forms/*/*/1FAIpQLScMJ6f1aatI2KrfBEf6PZ0ZWYZXd4jneUMldY4SIwtEOHCc2Q/*",
+                "https://docs.google.com/forms/*/*/1FAIpQLScMJ6f1aatI2KrfBEf6PZ0ZWYZXd4jneUMldY4SIwtEOHCc2Q/*",
+                "https://docs.google.com/forms/*/*/*/*/1FAIpQLScMJ6f1aatI2KrfBEf6PZ0ZWYZXd4jneUMldY4SIwtEOHCc2Q/*"
             ]
         }
     }
