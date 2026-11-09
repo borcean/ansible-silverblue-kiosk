@@ -10,4 +10,4 @@ firefox_policies: kiosk
 firefox_kill_schedule: '*:0/10'
 chrome_refresh_seconds: 300
 
-disable_autovts: true
+disable_autovts: false

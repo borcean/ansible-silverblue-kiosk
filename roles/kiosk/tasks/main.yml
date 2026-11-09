@@ -96,6 +96,12 @@
     - { option: 'ReserveTV', value: '0' }
   when: disable_autovts | bool
 
+- name: Remove default systemd-logind configuration
+  ansible.builtin.file:
+    path: /etc/systemd/logind.conf
+    state: absent
+  when: not (disable_autovts | bool)
+
 # - name: Kiosk | logind | Ignore suspend requests
 #   community.general.ini_file:
 #     path: /etc/systemd/logind.conf
