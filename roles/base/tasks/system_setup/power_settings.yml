@@ -63,3 +63,27 @@
     - suspend.target
     - hibernate.target
     - hybrid-sleep.target
+
+- name: Create systemd-logind configuration directory
+  ansible.builtin.file:
+    path: /etc/systemd/logind.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Configure systemd-logind for kiosk
+  ansible.builtin.copy:
+    dest: /etc/systemd/logind.conf.d/90-kiosk.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      [Login]
+      IdleAction=ignore
+      HandleSuspendKey=ignore
+      HandleHibernateKey=ignore
+      HandleLidSwitch=ignore
+      HandleLidSwitchExternalPower=ignore
+      HandleLidSwitchDocked=ignore
+  notify: reload_logind

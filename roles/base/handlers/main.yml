@@ -14,3 +14,8 @@
 - name: dconf_db_update
   ansible.builtin.command: dconf update
   changed_when: true
+
+- name: reload_logind
+  ansible.builtin.command:
+    cmd: systemctl kill --signal=HUP systemd-logind.service
+  changed_when: true
