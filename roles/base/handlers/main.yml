@@ -10,3 +10,7 @@
 - name: systemd_daemon_reload
   ansible.builtin.systemd:
     daemon_reload: true
+
+- name: dconf_db_update
+  ansible.builtin.command: dconf update
+  changed_when: true

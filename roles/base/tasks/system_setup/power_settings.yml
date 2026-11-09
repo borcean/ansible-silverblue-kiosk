@@ -1,0 +1,65 @@
+
+- name: Configure dconf user profile
+  ansible.builtin.copy:
+    dest: /etc/dconf/profile/user
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      user-db:user
+      system-db:local
+  notify: dconf_db_update
+
+- name: Create dconf configuration directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  loop:
+    - /etc/dconf/db/local.d
+    - /etc/dconf/db/local.d/locks
+
+- name: Configure GNOME power settings
+  ansible.builtin.copy:
+    dest: /etc/dconf/db/local.d/00-kiosk
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      [org/gnome/desktop/session]
+      idle-delay=uint32 0
+
+      [org/gnome/desktop/screensaver]
+      idle-activation-enabled=false
+
+      [org/gnome/settings-daemon/plugins/power]
+      idle-dim=false
+      sleep-inactive-ac-type='nothing'
+      sleep-inactive-battery-type='nothing'
+  notify: dconf_db_update
+
+- name: Lock GNOME power settings
+  ansible.builtin.copy:
+    dest: /etc/dconf/db/local.d/locks/00-kiosk
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      /org/gnome/desktop/session/idle-delay
+      /org/gnome/desktop/screensaver/idle-activation-enabled
+      /org/gnome/settings-daemon/plugins/power/idle-dim
+      /org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type
+      /org/gnome/settings-daemon/plugins/power/sleep-inactive-battery-type
+  notify: dconf_db_update
+
+- name: Disable system suspend and hibernation
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    masked: true
+  loop:
+    - sleep.target
+    - suspend.target
+    - hibernate.target
+    - hybrid-sleep.target
